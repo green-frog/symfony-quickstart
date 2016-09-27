@@ -30,11 +30,8 @@
       "braincrafted/bootstrap-bundle": "~2.0",
       "twbs/bootstrap": "3.0.*",
       "oyejorge/less.php": "~1.5",
-      "hwi/oauth-bundle": "dev-master",
       "jms/translation-bundle": "~1.1",
       "knplabs/knp-menu-bundle": "^2.0",
-      "smart-core/accelerator-cache-bundle": "~1",
-      "friendsofsymfony/user-bundle": "~2.0@dev",
       "easycorp/easy-security-bundle": "^1.0",
       "egeloen/ckeditor-bundle": "^4.0",
       "exercise/htmlpurifier-bundle": "^0.2.3"
@@ -55,7 +52,6 @@
          "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
          "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
          "Braincrafted\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::install",
-         "SmartCore\\Bundle\\AcceleratorCacheBundle\\Composer\\ScriptHandler::clearCache",
          "php app/console assetic:dump web/"
       ],
       "post-update-cmd": [
@@ -66,7 +62,6 @@
          "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
          "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
          "Braincrafted\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::install",
-         "SmartCore\\Bundle\\AcceleratorCacheBundle\\Composer\\ScriptHandler::clearCache",
          "php app/console assetic:dump web/"
       ]
    },

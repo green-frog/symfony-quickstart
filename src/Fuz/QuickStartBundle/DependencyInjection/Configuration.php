@@ -20,67 +20,6 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('fuz_quick_start');
 
-        $rootNode
-           ->children()
-                ->arrayNode('no_captcha')
-                    ->isRequired()
-                    ->children()
-                        ->scalarNode('site_key')
-                            ->isRequired()
-                        ->end()
-                        ->scalarNode('secret_key')
-                            ->isRequired()
-                        ->end()
-                        ->arrayNode('sessions_per_ip')
-                            ->isRequired()
-                            ->children()
-                                ->integerNode('max')
-                                    ->defaultValue(20)
-                                ->end()
-                                ->integerNode('delay')
-                                    ->defaultValue(3600)
-                                ->end()
-                            ->end()
-                        ->end()
-                        ->arrayNode('strategies')
-                            ->defaultValue(array())
-                            ->useAttributeAsKey('name')
-                            ->prototype('array')
-                                ->children()
-                                    ->integerNode('hits')
-                                        ->isRequired()
-                                    ->end()
-                                    ->integerNode('delay')
-                                        ->isRequired()
-                                    ->end()
-                                    ->booleanNode('reset')
-                                        ->isRequired()
-                                    ->end()
-                                    ->arrayNode('methods')
-                                        ->beforeNormalization()
-                                            ->ifTrue(function ($v) { return $v === null; })
-                                            ->then(function ($v) { return array(); })
-                                        ->end()
-                                        ->prototype('scalar')->end()
-                                        ->defaultValue(array())
-                                        ->validate()
-                                            ->ifTrue(function ($methods) {
-                                                $allowed = array('HEAD', 'GET', 'POST', 'PUT', 'DELETE');
-                                                $diff = array_diff(array_map('strtoupper', $methods), $allowed);
-
-                                                return count($diff);
-                                            })
-                                            ->thenInvalid('Captcha configuration: unknown HTTP method: %s')
-                                        ->end()
-                                    ->end()
-                                ->end()
-                            ->end()
-                       ->end()
-                   ->end()
-                ->end()
-            ->end()
-        ;
-
         return $treeBuilder;
     }
 }
